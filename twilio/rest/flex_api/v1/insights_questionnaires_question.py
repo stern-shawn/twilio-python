@@ -44,16 +44,16 @@ class InsightsQuestionnairesQuestionList(ListResource):
     
     
     
-    def create(self, category_id, question, description, answer_set_id, allow_na, token=values.unset):
+    def create(self, category_id, question, answer_set_id, allow_na, token=values.unset, description=values.unset):
         """
         Create the InsightsQuestionnairesQuestionInstance
 
         :param str category_id: The ID of the category
         :param str question: The question.
-        :param str description: The description for the question.
         :param str answer_set_id: The answer_set for the question.
         :param bool allow_na: The flag to enable for disable NA for answer.
         :param str token: The Token HTTP request header
+        :param str description: The description for the question.
         
         :returns: The created InsightsQuestionnairesQuestionInstance
         :rtype: twilio.rest.flex_api.v1.insights_questionnaires_question.InsightsQuestionnairesQuestionInstance
@@ -61,9 +61,9 @@ class InsightsQuestionnairesQuestionList(ListResource):
         data = values.of({ 
             'CategoryId': category_id,
             'Question': question,
-            'Description': description,
             'AnswerSetId': answer_set_id,
             'AllowNa': allow_na,
+            'Description': description,
         })
         headers = values.of({'Token': token, })
         payload = self._version.create(method='POST', uri=self._uri, data=data, headers=headers)
